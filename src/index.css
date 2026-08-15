@@ -31,6 +31,25 @@
 
   --radius: 8px;
   --maxw: 1200px;
+  --sidebar-w: 240px;
+}
+
+/* ---- app shell ---- */
+
+.app-main {
+  min-height: 100vh;
+}
+
+/* Only shift the content when a sidebar is actually there */
+.has-sidebar .app-main {
+  padding-top: var(--sp-6);        /* room for the mobile toggle */
+}
+
+@media (min-width: 768px) {
+  .has-sidebar .app-main {
+    margin-left: var(--sidebar-w);
+    padding-top: 0;
+  }
 }
 
 * {
@@ -133,3 +152,31 @@ label {
 }
 
 .stack > * + * { margin-top: var(--sp-3); }
+
+.auth-page {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-3);
+  text-align: center;
+}
+.auth-title { font-size: 2.5rem; margin-bottom: var(--sp-1); }
+.auth-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  margin-bottom: var(--sp-5);
+}
+.auth-page form { text-align: left; }
+.form-error { color: var(--danger); font-size: 0.9rem; margin: 0; }
+
+.empty-state {
+  text-align: center;
+  padding: var(--sp-6) var(--sp-3);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.not-found-line {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-4);
+}
