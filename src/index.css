@@ -180,3 +180,35 @@ label {
   color: var(--text-muted);
   margin-bottom: var(--sp-4);
 }
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+.avatar-lg { width: 64px; height: 64px; }
+.avatar-xl { width: 112px; height: 112px; }
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin-top: var(--sp-2);
+}
+.tag-removable { cursor: pointer; }
+.tag-removable:hover { border-color: var(--danger); color: var(--danger); }
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-4);
+}
+.page-search { max-width: 280px; }
+
+.form-page { max-width: 640px; }
+
+.skill-input { display: flex; gap: var(--sp-2); }
+.skill-input input { flex: 1; }

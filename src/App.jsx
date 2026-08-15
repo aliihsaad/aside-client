@@ -7,6 +7,9 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import HealthPage from "./pages/HealthPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import PeoplePage from "./pages/PeoplePage";
+import ProfilePage from "./pages/ProfilePage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   const { user } = useAuthContext();
@@ -22,6 +25,9 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<HealthPage />} />
+            <Route path="/people" element={<PeoplePage />} />
+            <Route path="/profile/edit" element={<EditProfilePage />} />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
           </Route>
         </Routes>
       </main>

@@ -1,0 +1,19 @@
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-3);
+}
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-2);
+  color: var(--text);
+}
+.person-card:hover {
+  border-color: var(--text-muted);
+  text-decoration: none;
+}
+.person-name { margin: 0; font-size: 1.05rem; }
