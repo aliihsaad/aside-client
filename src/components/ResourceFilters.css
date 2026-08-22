@@ -1,0 +1,158 @@
+.filters {
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  position: sticky;
+  top: var(--sp-4);
+}
+
+.filters-head {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.filter-group {
+  border: none;
+  padding: 0;
+  margin: var(--sp-3) 0 0;
+}
+
+.filter-group:first-of-type {
+  margin-top: var(--sp-2);
+}
+
+.filter-group legend {
+  margin: 0 0 var(--sp-1);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.chip {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition:
+    border-color var(--t-fast),
+    background var(--t-fast),
+    color var(--t-fast),
+    transform var(--t-fast);
+  line-height: 1.1;
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.chip-active {
+  border-color: transparent;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #181411;
+  font-weight: 650;
+}
+
+.filters .tag {
+  border-color: var(--border);
+  border-radius: 999px;
+}
+
+.filters {
+  position: static;
+  display: grid;
+  grid-template-columns: 140px 1.35fr 1fr;
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--text);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.filters > .page-head {
+  align-content: start;
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 18px 18px 18px 0;
+  border-right: 1px solid var(--text);
+}
+
+.filters-head {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.filter-group {
+  margin: 0;
+  padding: 17px 18px;
+  border: 0;
+  border-right: 1px solid var(--text);
+}
+
+.filter-group:last-child {
+  border-right: 0;
+}
+
+.filter-group:first-of-type {
+  margin-top: 0;
+}
+
+.chip-list,
+.filters .tag-row {
+  gap: 6px;
+}
+
+.chip,
+.filters .tag {
+  border-radius: 0;
+  padding: 6px 9px;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+}
+
+.chip:hover,
+.filters .tag:hover {
+  transform: none;
+  background: var(--surface);
+  color: var(--accent);
+}
+
+.chip-active,
+.filters .tag-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+@media (max-width: 780px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .filters > .page-head,
+  .filter-group {
+    padding: 14px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
