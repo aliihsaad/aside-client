@@ -1,8 +1,11 @@
- import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/api";
 import { useFetch } from "../lib/useFetch";
 import { useAuthContext } from "../lib/useAuthContext";
+import { uploadImage } from "../lib/uploadImage";
+import ImageUploadField from "../components/ImageUploadField";
+import "./EditProfilePage.css";
 
 const EMPTY = {
   name: "",
@@ -18,12 +21,12 @@ function EditProfilePage() {
   const [skillDraft, setSkillDraft] = useState("");
   const [error, setError] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [avatarChange, setAvatarChange] = useState({ file: null, remove: false });
 
-  const { user } = useAuthContext();
+  const { user, updateUser } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (me) setForm({ ...EMPTY, ...me });
   }, [me]);
 
@@ -49,7 +52,11 @@ function EditProfilePage() {
     setSaving(true);
 
     try {
-      await api.put("/users/me", form);
+      let avatarUrl = avatarChange.remove ? "" : form.avatarUrl;
+      if (avatarChange.file) avatarUrl = await uploadImage(avatarChange.file);
+
+      const { data } = await api.put("/users/me", { ...form, avatarUrl });
+      updateUser(data);
       navigate(`/profile/${user._id}`);
     } catch (err) {
       setError(err.response?.data?.message || "Couldn't save that");
@@ -61,8 +68,12 @@ function EditProfilePage() {
   if (loading) return <p className="muted container">Loading…</p>;
 
   return (
-    <div className="container form-page">
-      <h1>Edit profile</h1>
+    <div className="container page-shell form-page edit-profile-page">
+      <header className="page-hero">
+        <p className="page-kicker">Profile</p>
+        <h1 className="section-title">Edit profile</h1>
+        <p className="muted">Fine-tune how the team sees your shelf and expertise.</p>
+      </header>
 
       <form onSubmit={handleSubmit} className="card stack">
         <div>
@@ -75,10 +86,14 @@ function EditProfilePage() {
           <textarea id="bio" name="bio" rows={3} value={form.bio} onChange={handleChange} />
         </div>
 
-        <div>
-          <label htmlFor="avatarUrl">Avatar URL</label>
-          <input id="avatarUrl" name="avatarUrl" value={form.avatarUrl} onChange={handleChange} />
-        </div>
+        <ImageUploadField
+          id="avatar-image"
+          label="Profile image"
+          currentUrl={form.avatarUrl}
+          onChange={setAvatarChange}
+          onError={setError}
+          disabled={saving}
+        />
 
         <div>
           <label htmlFor="githubUsername">GitHub username</label>
@@ -128,7 +143,7 @@ function EditProfilePage() {
         {error && <p className="form-error">{error}</p>}
 
         <button type="submit" className="btn-primary" disabled={saving}>
-          {saving ? "Saving…" : "Save changes"}
+          {saving ? (avatarChange.file ? "Uploading…" : "Saving…") : "Save changes"}
         </button>
       </form>
     </div>

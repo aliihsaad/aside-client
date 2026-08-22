@@ -1,0 +1,98 @@
+.comments {
+  margin-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  padding-top: var(--sp-3);
+  padding-inline: 0;
+}
+
+.comments-head {
+  margin-bottom: var(--sp-2);
+  font-size: 1rem;
+  font-family: var(--font-ui);
+  color: var(--text-muted);
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--sp-4);
+  display: grid;
+  gap: 0;
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: start;
+  gap: var(--sp-2);
+  padding: var(--sp-2) 0;
+  border-top: 1px solid color-mix(in oklab, var(--border) 72%, transparent 28%);
+  position: relative;
+}
+
+.comment:first-child { border-top: 0; }
+.comment:first-child::before { display: none; }
+
+.comment::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  border-top: 1px solid transparent;
+  opacity: 0.6;
+}
+
+.comment-body {
+  min-width: 0;
+}
+
+.comment-author {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.comment-author:hover {
+  color: var(--accent);
+}
+
+.comment-text {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+  color: var(--text);
+}
+
+.comment-delete {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 0 0.6rem;
+  line-height: 1;
+  border-radius: 999px;
+  font-size: 1.05rem;
+}
+
+.comment-delete:hover {
+  border-color: color-mix(in oklab, var(--danger) 45%, transparent 55%);
+  color: var(--danger);
+}
+
+.comment-form {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+  align-items: flex-start;
+}
+
+.comment-form input {
+  flex: 1;
+  background: var(--surface-3);
+  border-radius: 999px;
+}
+
+.comment-form button {
+  border-radius: 999px;
+  padding-left: var(--sp-3);
+  padding-right: var(--sp-3);
+}

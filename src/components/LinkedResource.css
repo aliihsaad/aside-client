@@ -1,0 +1,51 @@
+.linked-resource {
+  display: block;
+  margin-top: var(--sp-3);
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--surface);
+  transition:
+    border-color var(--t-fast),
+    background var(--t-fast),
+    box-shadow var(--t-fast),
+    transform var(--t-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.linked-resource::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, color-mix(in oklab, var(--accent) 8%, transparent 92%), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--t-fast);
+}
+
+.linked-resource:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: var(--shadow-1);
+  transform: translateX(2px);
+  text-decoration: none;
+}
+
+.linked-resource:hover::before {
+  opacity: 1;
+}
+
+.linked-title {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.linked-desc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

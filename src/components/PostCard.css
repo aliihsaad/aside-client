@@ -1,0 +1,229 @@
+.post-card {
+  margin-bottom: var(--sp-3);
+  position: relative;
+  padding: var(--sp-3);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, var(--surface), color-mix(in oklab, var(--surface-2) 85%, var(--surface) 15%));
+  box-shadow: var(--shadow-1);
+  animation: rise 0.35s var(--ease) both;
+  overflow: hidden;
+}
+
+.post-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent 75%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-fast);
+}
+
+.post-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-2);
+}
+
+.post-card:hover::before {
+  opacity: 1;
+}
+
+.post-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity var(--t-fast);
+}
+
+.post-card:hover::after {
+  opacity: 1;
+}
+
+.post-head {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+  margin-bottom: var(--sp-3);
+}
+
+.post-head .avatar {
+  width: 44px;
+  height: 44px;
+}
+
+.post-author {
+  color: var(--text);
+  font-weight: 700;
+  display: block;
+  text-decoration: none;
+}
+
+.post-author:hover {
+  color: var(--accent);
+}
+
+.post-meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.post-body {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.96rem;
+  color: var(--text);
+}
+
+.post-image {
+  width: 100%;
+  max-height: 620px;
+  height: auto;
+  object-fit: contain;
+  box-sizing: border-box;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-top: var(--sp-3);
+  display: block;
+  background: linear-gradient(180deg, var(--surface-2), #fffdf8);
+}
+
+.post-actions {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+}
+
+.post-actions > * {
+  border-radius: 999px;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  background: var(--surface-3);
+}
+
+.post-read {
+  display: inline-block;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.post-read:hover {
+  color: #201813;
+  text-decoration: none;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.post-card {
+  margin: 0;
+  padding: 30px 0 28px;
+  border: 0;
+  border-bottom: 1px solid var(--text);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.post-card::before,
+.post-card::after {
+  display: none;
+}
+
+.post-card:hover {
+  border-color: var(--text);
+  box-shadow: none;
+}
+
+.post-head {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.post-head .avatar {
+  width: 46px;
+  height: 46px;
+}
+
+.post-author {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.post-meta {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+}
+
+.post-body {
+  max-width: 62ch;
+  padding-left: 60px;
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  line-height: 1.48;
+}
+
+.post-card > .tag-row,
+.post-card > .linked-resource,
+.post-card > .post-image {
+  margin-left: 60px;
+}
+
+.post-card > .post-image {
+  width: calc(100% - 60px);
+}
+
+.post-image {
+  border: 1px solid var(--text);
+  border-radius: 0;
+}
+
+.post-actions {
+  justify-content: flex-end;
+  margin: 22px 0 0 60px;
+  padding-top: 12px;
+}
+
+.post-actions > * {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.post-read {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  .post-body,
+  .post-card > .tag-row,
+  .post-card > .linked-resource,
+  .post-card > .post-image,
+  .post-actions {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .post-card > .post-image {
+    width: 100%;
+  }
+}

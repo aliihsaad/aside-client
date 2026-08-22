@@ -1,0 +1,27 @@
+.edit-profile-page .btn-primary {
+  width: 100%;
+}
+
+.edit-profile-page .skill-input button {
+  flex-shrink: 0;
+}
+
+.edit-profile-page .form-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: var(--sp-4);
+  border-radius: var(--radius-lg);
+}
+
+.edit-profile-page .page-hero {
+  gap: var(--sp-2);
+}
+
+.edit-profile-page textarea,
+.edit-profile-page input {
+  max-width: 60ch;
+}
+
+.edit-profile-page .tag-row {
+  margin-top: var(--sp-2);
+}

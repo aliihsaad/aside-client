@@ -1,0 +1,18 @@
+.post-detail-page .post-card {
+  margin-bottom: 0;
+}
+
+.edit-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+  border-top: 1px solid var(--border);
+  padding-top: var(--sp-3);
+}
+
+.post-detail-page textarea {
+  min-height: 120px;
+  border-radius: var(--radius);
+}
