@@ -1,0 +1,15 @@
+/* ErrorMessage — the shared .form-error alert box plus an icon */
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  animation: fade 0.2s var(--ease);
+  font-size: 0.9rem;
+}
+.error-message::before {
+  content: "\26A0"; /* ⚠ */
+  flex-shrink: 0;
+  color: #7a3131;
+  font-size: 1rem;
+}

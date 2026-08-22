@@ -1,0 +1,22 @@
+.health-page .form-error {
+  display: inline-block;
+}
+
+.health-page .health-pre-wrap {
+  padding: 0;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.health-pre {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  background: #0f0e10;
+  color: #f4efe3;
+}

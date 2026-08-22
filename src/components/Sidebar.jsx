@@ -1,14 +1,63 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { BookOpen, Bookmark, LogOut, Menu, Rss, User, Users, X } from "lucide-react";
 import { useAuthContext } from "../lib/useAuthContext";
-import "./Sidebar.css"
+import "./Sidebar.css";
+
+
+const ICON_PROPS = {
+  width: 18,
+  height: 18,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  "aria-hidden": true,
+};
 
 const LINKS = [
-  { to: "/feed", label: "Feed", icon: Rss },
-  { to: "/", label: "Library", end: true, icon: BookOpen },
-  { to: "/people", label: "People", icon: Users },
-  { to: "/saved", label: "Saved", icon: Bookmark },
+  {
+    to: "/library",
+    label: "Library",
+    end: true,
+    icon: (
+      <svg {...ICON_PROPS}>
+        <path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z" />
+        <path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z" />
+      </svg>
+    ),
+  },
+  {
+    to: "/feed",
+    label: "The Commons",
+    icon: (
+      <svg {...ICON_PROPS}>
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    ),
+  },
+  {
+    to: "/people",
+    label: "People",
+    icon: (
+      <svg {...ICON_PROPS}>
+        <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
+        <circle cx="10" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    ),
+  },
+  {
+    to: "/saved",
+    label: "Saved",
+    icon: (
+      <svg {...ICON_PROPS}>
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Sidebar() {
@@ -17,66 +66,87 @@ export default function Sidebar() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") setOpen(false);
+    if (!open) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setOpen(false);
     };
+
+    document.body.classList.add("menu-open");
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+
+    return () => {
+      document.body.classList.remove("menu-open");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   if (!user) return null;
 
   return (
-    <>
-      <button
-        type="button"
-        className="drawer-toggle"
-        onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close navigation" : "Open navigation"}
-        aria-expanded={open}
-        aria-controls="sidebar"
-      >
-        {open ? <X size={20} /> : <Menu size={20} />}
-      </button>
-
+    <header id="sidebar" className="sidebar">
       {open && (
-        <div className="drawer-backdrop" onClick={() => setOpen(false)} />
+        <button
+          type="button"
+          className="menu-backdrop"
+          onClick={() => setOpen(false)}
+          aria-label="Close navigation"
+        />
       )}
 
-      <aside id="sidebar" className={`sidebar${open ? " is-open" : ""}`}>
-        <Link to="/" className="brand">Aside</Link>
+      <div className="sidebar-inner">
+        <Link to="/" className="brand">
+          <strong>Aside.</strong>
+          <small>Cohort index</small>
+        </Link>
 
-        <nav className="sidebar-nav">
-          {LINKS.map(({ to, label, end, icon: Icon }) => (
-            <NavLink key={to} to={to} end={end}>
-              <Icon size={18} />
-              {label}
+        <button
+          type="button"
+          className="menu-toggle"
+          onClick={() => setOpen((current) => !current)}
+          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+        >
+          <span />
+          <span />
+        </button>
+
+        <div id="mobile-navigation" className={`sidebar-panel${open ? " is-open" : ""}`}>
+          <nav className="sidebar-nav" aria-label="Primary navigation">
+            {LINKS.map(({ to, label, end, icon }, index) => (
+              <NavLink key={to} to={to} end={end} title={label}>
+                <span className="nav-index">0{index + 1}</span>
+                {icon}
+                <span className="nav-label">{label}</span>
+              </NavLink>
+            ))}
+          </nav>
+
+          <div className="sidebar-tools">
+            <Link to="/resources/new" className="quick-link">
+              <span aria-hidden="true">+</span>
+              <span>Add resource</span>
+            </Link>
+            <NavLink to={`/profile/${user._id}`} className="sidebar-user" title="My shelf">
+              <img
+                className="avatar avatar-sm"
+                src={user.avatarUrl || "https://placehold.co/32x32/1a1d2e/9aa0b8?text=?"}
+                alt=""
+              />
+              <span className="sidebar-user-copy">
+                <strong>{user.name}</strong>
+                <small>My shelf</small>
+              </span>
             </NavLink>
-          ))}
-        </nav>
-
-        <div className="sidebar-divider" />
-
-        <nav className="sidebar-nav">
-          <NavLink to={`/profile/${user._id}`}>
-            <User size={18} />
-            My shelf
-          </NavLink>
-        </nav>
-
-        <div className="sidebar-footer">
-          <span className="sidebar-user">{user.name}</span>
-          <button type="button" onClick={logout}>
-            <LogOut size={16} />
-            Log out
-          </button>
+            <button type="button" className="logout-button" onClick={logout}>Log out</button>
+          </div>
         </div>
-      </aside>
-    </>
+      </div>
+    </header>
   );
 }

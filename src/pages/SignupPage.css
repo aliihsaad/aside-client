@@ -1,0 +1,152 @@
+.signup-page {
+  --accent-glow: color-mix(in oklab, var(--accent) 22%, transparent 78%);
+}
+
+.signup-page .card {
+  border-top: 2px solid var(--accent);
+  background: linear-gradient(150deg, var(--surface), color-mix(in oklab, var(--surface-2) 80%, var(--surface) 20%));
+}
+
+.signup-page .btn-primary {
+  width: 100%;
+}
+
+.signup-page > .muted {
+  margin-top: var(--sp-4);
+}
+
+.signup-page .auth-hero {
+  text-align: center;
+  margin-bottom: var(--sp-4);
+}
+
+.signup-page .auth-copy {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.auth-shell {
+  min-height: 100vh;
+  padding: 0;
+  align-items: stretch;
+}
+
+.auth-page.signup-page {
+  width: min(100%, 1440px);
+  max-width: none;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(480px, 0.95fr);
+  grid-template-rows: 1fr auto;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+.signup-page .auth-hero {
+  grid-row: 1 / 3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0;
+  padding: 72px;
+  background: var(--accent);
+  color: white;
+}
+
+.signup-page .auth-hero .page-kicker {
+  color: white;
+}
+
+.signup-page .auth-title {
+  margin: 28px 0 26px;
+  color: white;
+  font-size: clamp(6rem, 12vw, 11rem);
+  font-weight: 400;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+}
+
+.signup-page .auth-copy {
+  max-width: 34ch;
+  color: #dbe3ff;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.signup-page .card {
+  align-self: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 18px;
+  margin: 52px 54px 20px;
+  padding: 0;
+  border: 0;
+  border-top: 2px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.signup-page .card > div {
+  padding-top: 18px;
+}
+
+.signup-page .card input {
+  height: 48px;
+  border: 0;
+  border-bottom: 1px solid var(--text);
+  background: transparent;
+}
+
+.signup-page .card .form-error,
+.signup-page .card .btn-primary {
+  grid-column: 1 / -1;
+}
+
+.signup-page .btn-primary {
+  min-height: 50px;
+  margin-top: 8px;
+}
+
+.signup-page > .muted {
+  margin: 0 54px 44px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 780px) {
+  .auth-page.signup-page {
+    grid-template-columns: 1fr;
+  }
+
+  .signup-page .auth-hero {
+    grid-row: auto;
+    min-height: 38vh;
+    padding: 36px 22px;
+  }
+
+  .signup-page .auth-title {
+    font-size: clamp(5rem, 27vw, 8rem);
+  }
+
+  .signup-page .card {
+    grid-template-columns: 1fr;
+    margin: 36px 22px 18px;
+  }
+
+  .signup-page .card .form-error,
+  .signup-page .card .btn-primary {
+    grid-column: auto;
+  }
+
+  .signup-page > .muted {
+    margin: 0 22px 40px;
+  }
+}

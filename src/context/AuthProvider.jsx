@@ -3,18 +3,23 @@ import { useNavigate } from "react-router-dom";
 import api from "../lib/api";
 import { AuthContext } from "./AuthContext";
 
-
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const loadCurrentUser = async () => {
+    const { data } = await api.get("/users/me");
+    setUser(data);
+    return data;
+  };
 
   const signup = async (body) => {
     try {
       setLoading(true);
       const { data } = await api.post("/auth/signup", body);
       localStorage.setItem("authToken", data.authToken);
-      setUser(data.user);
+      await loadCurrentUser();
       navigate("/");
     } finally {
       setLoading(false);
@@ -26,7 +31,7 @@ export default function AuthProvider({ children }) {
       setLoading(true);
       const { data } = await api.post("/auth/login", body);
       localStorage.setItem("authToken", data.authToken);
-      setUser(data.user);
+      await loadCurrentUser();
       navigate("/");
     } finally {
       setLoading(false);
@@ -48,8 +53,7 @@ export default function AuthProvider({ children }) {
     }
 
     try {
-      const { data } = await api.get("/auth/verify");
-      setUser(data);
+      await loadCurrentUser();
     } catch {
       localStorage.removeItem("authToken");
       setUser(null);
@@ -59,12 +63,11 @@ export default function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     verify();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, signup, login, logout, updateUser: setUser }}>
       {children}
     </AuthContext.Provider>
   );

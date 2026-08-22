@@ -1,0 +1,48 @@
+.not-found-shell {
+  display: grid;
+  gap: var(--sp-2);
+  text-align: center;
+  max-width: 640px;
+}
+
+.not-found-code {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 0.25em;
+  font-family: var(--font-display);
+  color: var(--text-muted);
+}
+
+.not-found-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.3vw, 3rem);
+}
+
+.not-found-line {
+  margin: 0 0 var(--sp-3);
+  font-size: 1.05rem;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.not-found-actions .btn-surface {
+  border-color: var(--border-strong);
+  background: color-mix(in oklab, var(--surface-2) 85%, var(--surface) 15%);
+}
+
+@media (max-width: 640px) {
+  .not-found-actions {
+    flex-direction: column;
+  }
+
+  .not-found-actions > .btn-surface,
+  .not-found-actions > .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}

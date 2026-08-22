@@ -1,0 +1,147 @@
+.login-page .card {
+  border-top: 2px solid var(--accent);
+  background: linear-gradient(150deg, var(--surface), color-mix(in oklab, var(--surface-2) 80%, var(--surface) 20%));
+}
+
+.login-page .btn-primary {
+  width: 100%;
+}
+
+.login-page > .muted {
+  margin-top: var(--sp-4);
+}
+
+.auth-shell {
+  width: 100%;
+  min-height: calc(100vh - var(--sp-4));
+  display: grid;
+  align-items: center;
+  padding: var(--sp-6) 0;
+}
+
+.auth-hero {
+  text-align: center;
+  margin-bottom: var(--sp-4);
+}
+
+.auth-hero .auth-copy {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.auth-shell {
+  min-height: 100vh;
+  padding: 0;
+  align-items: stretch;
+}
+
+.auth-page.login-page {
+  width: min(100%, 1440px);
+  max-width: none;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(420px, 0.75fr);
+  grid-template-rows: 1fr auto;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+.login-page .auth-hero {
+  grid-row: 1 / 3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin: 0;
+  padding: 72px;
+  background: var(--text);
+  color: var(--surface);
+}
+
+.login-page .auth-hero .page-kicker {
+  color: #90a8ff;
+}
+
+.login-page .auth-title {
+  margin: 28px 0 26px;
+  color: var(--surface);
+  font-size: clamp(6rem, 13vw, 12rem);
+  font-weight: 400;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+}
+
+.login-page .auth-copy {
+  max-width: 34ch;
+  color: #c8c6bd;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.login-page .card {
+  align-self: end;
+  margin: 72px 64px 24px;
+  padding: 0;
+  border: 0;
+  border-top: 2px solid var(--accent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.login-page .card > div {
+  padding-top: 24px;
+}
+
+.login-page .card input {
+  height: 52px;
+  border: 0;
+  border-bottom: 1px solid var(--text);
+  background: transparent;
+  font-size: 1.05rem;
+}
+
+.login-page .btn-primary {
+  min-height: 50px;
+  margin-top: 28px;
+}
+
+.login-page > .muted {
+  margin: 0 64px 64px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 780px) {
+  .auth-page.login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .login-page .auth-hero {
+    grid-row: auto;
+    min-height: 42vh;
+    padding: 36px 22px;
+  }
+
+  .login-page .auth-title {
+    font-size: clamp(5rem, 27vw, 8rem);
+  }
+
+  .login-page .auth-copy {
+    font-size: 1.1rem;
+  }
+
+  .login-page .card {
+    margin: 42px 22px 18px;
+  }
+
+  .login-page > .muted {
+    margin: 0 22px 42px;
+  }
+}
