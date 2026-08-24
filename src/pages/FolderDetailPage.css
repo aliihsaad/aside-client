@@ -1,0 +1,30 @@
+.folder-detail-page {
+  --folder-rhythm: var(--sp-3);
+}
+
+.folder-detail-page .folder-hero {
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: var(--sp-2);
+}
+
+.folder-hero .folder-meta {
+  margin: 0;
+}
+
+.folder-cta {
+  width: fit-content;
+}
+
+.folder-empty {
+  margin-top: calc(-1 * var(--sp-1));
+  padding: var(--sp-3) var(--sp-2);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--surface-2) 75%, var(--surface) 25%);
+  text-align: center;
+}
+
+.folder-detail-page .resource-grid {
+  margin-top: var(--folder-rhythm);
+}

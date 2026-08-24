@@ -1,0 +1,201 @@
+.folder-card {
+  display: block;
+  color: var(--text);
+  border-left: 3px solid transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  position: relative;
+  background: var(--surface-2);
+  transition:
+    border-color var(--t-fast),
+    box-shadow var(--t-fast),
+    transform var(--t-fast);
+  overflow: hidden;
+}
+
+.folder-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0, rgba(140, 90, 67, 0.08), transparent 46%);
+  opacity: 0;
+  transition: opacity var(--t-fast);
+  pointer-events: none;
+}
+
+.folder-card:hover {
+  border-color: var(--border-strong);
+  border-left-color: var(--accent);
+  box-shadow: var(--shadow-1);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.folder-card:hover::before {
+  opacity: 1;
+}
+
+.folder-card::after {
+  content: "→";
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity var(--t-fast),
+    transform var(--t-fast);
+  pointer-events: none;
+}
+
+.folder-card-link {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-height: 100%;
+  color: inherit;
+}
+
+.folder-card-link:hover {
+  text-decoration: none;
+}
+
+.folder-card:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.folder-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: var(--sp-2);
+  vertical-align: middle;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--border) 70%, transparent 30%);
+}
+
+.folder-name {
+  display: inline;
+  font-size: 1.05rem;
+}
+
+.folder-desc {
+  margin: var(--sp-2) 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.folder-count {
+  margin: var(--sp-1) 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.folder-card {
+  min-height: 190px;
+  padding: 22px;
+  border: 0;
+  border-right: 1px solid var(--text);
+  border-bottom: 1px solid var(--text);
+  border-radius: 0;
+  background: transparent;
+}
+
+.folder-card:nth-child(3n) {
+  border-right: 0;
+}
+
+.folder-card::before {
+  inset: auto 0 0;
+  height: 7px;
+  background: var(--accent);
+  opacity: 0;
+}
+
+.folder-card::after {
+  top: 18px;
+  right: 20px;
+}
+
+.folder-card:hover {
+  transform: none;
+  border-color: var(--text);
+  border-left-color: var(--text);
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.folder-dot {
+  width: 28px;
+  height: 4px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.folder-name {
+  display: block;
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.folder-count {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+}
+
+.folder-card-actions {
+  position: absolute;
+  z-index: 2;
+  left: 22px;
+  bottom: 16px;
+  display: flex;
+  gap: 6px;
+}
+
+.folder-action {
+  min-height: auto;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  padding: 3px 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.folder-action + .folder-action {
+  margin-left: 8px;
+}
+
+.folder-action:hover:not(:disabled) {
+  border-bottom-color: currentColor;
+  color: var(--text);
+  background: transparent;
+}
+
+.folder-action-danger:hover:not(:disabled) {
+  color: var(--danger);
+}
+
+.folder-action:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+@media (max-width: 780px) {
+  .folder-card,
+  .folder-card:nth-child(3n) {
+    border-right: 0;
+  }
+}
