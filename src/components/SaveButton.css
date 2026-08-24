@@ -1,0 +1,14 @@
+.save-button.is-saved {
+  border-color: color-mix(in oklab, var(--accent) 52%, var(--border) 48%);
+  color: #1a140f;
+  background: var(--accent);
+  box-shadow: 0 6px 16px -10px var(--accent-glow);
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.save-button.is-saved:hover:not(:disabled) {
+  border-color: var(--accent-2);
+  background: var(--accent-2);
+  color: #fffdf8;
+}

@@ -1,0 +1,65 @@
+.lineage-tree,
+.lineage-children {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lineage-children {
+  margin-left: var(--sp-4);
+  padding-left: var(--sp-4);
+  border-left: 2px solid color-mix(in oklab, var(--teal) 45%, transparent 55%);
+  border-image: linear-gradient(var(--teal), transparent) 1;
+}
+
+.lineage-node {
+  margin: var(--sp-2) 0;
+  position: relative;
+}
+
+.lineage-children .lineage-node::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--sp-4) * -1);
+  top: 26px;
+  width: var(--sp-4);
+  height: 2px;
+  background: color-mix(in oklab, var(--teal) 35%, transparent 65%);
+}
+
+.lineage-card {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--text);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  animation: rise 0.3s var(--ease) both;
+  transition: transform var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.lineage-card:hover {
+  border-color: var(--border-strong);
+  transform: translateX(3px);
+  text-decoration: none;
+}
+
+.lineage-card.is-root {
+  border-left: 3px solid var(--accent);
+}
+
+.lineage-owner { display: block; font-weight: 600; font-size: 0.9rem; }
+.lineage-title { display: block; font-size: 0.8rem; color: var(--text-muted); }
+
+.lineage-page {
+  gap: var(--sp-4);
+}
+
+.lineage-hero {
+  gap: var(--sp-2);
+}
+
+.lineage-page .lineage-tree {
+  margin-top: 0;
+}

@@ -1,0 +1,13 @@
+.fork-button {
+  border-color: color-mix(in oklab, var(--teal) 45%, var(--border) 55%);
+  color: var(--teal);
+  background: color-mix(in oklab, var(--teal) 10%, var(--surface) 90%);
+  border-radius: 999px;
+}
+
+.fork-button:hover:not(:disabled) {
+  color: #18211f;
+  border-color: var(--teal);
+  background: color-mix(in oklab, var(--teal) 18%, var(--surface) 82%);
+  box-shadow: 0 6px 16px -12px rgba(89, 126, 116, 0.45);
+}
