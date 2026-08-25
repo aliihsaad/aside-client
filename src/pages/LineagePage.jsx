@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../lib/useFetch";
+import Breadcrumbs from "../components/Breadcrumbs";
 import "./LineagePage.css";
 
 function LineageNode({ resource, depth = 0 }) {
@@ -44,7 +45,13 @@ function LineagePage() {
   return (
     <div className="container page-shell lineage-page">
       <header className="page-hero lineage-hero">
-        <p className="page-kicker">Resource lineage</p>
+        <Breadcrumbs
+          items={[
+            { label: "Library", to: "/library" },
+            { label: root.title, to: `/resources/${root._id}` },
+            { label: "Lineage" },
+          ]}
+        />
         <h1 className="section-title">Forked from {root.title}</h1>
         <p className="muted">
           {root.forkCount} {root.forkCount === 1 ? "fork" : "forks"} in the tree

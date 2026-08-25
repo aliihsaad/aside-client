@@ -1,0 +1,55 @@
+/* Sits where .page-kicker would, so nested pages don't carry both. */
+.breadcrumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* The separator belongs to the crumb before it, so it never appears at the end. */
+.breadcrumbs li:not(:last-child)::after {
+  content: "/";
+  color: var(--border-strong);
+  font-weight: 400;
+}
+
+.breadcrumbs a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-fast);
+}
+
+.breadcrumbs a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Current page — titles can be long, so it truncates rather than wrapping. */
+.breadcrumbs li:last-child span {
+  color: var(--text-muted);
+  max-width: 42ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .breadcrumbs li:last-child span {
+    max-width: 20ch;
+  }
+}

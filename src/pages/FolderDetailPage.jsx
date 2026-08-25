@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../lib/useFetch";
 import { useAuthContext } from "../lib/useAuthContext";
 import ResourceCard from "../components/ResourceCard";
+import Breadcrumbs from "../components/Breadcrumbs";
 import "./FolderDetailPage.css";
 
 function FolderDetailPage() {
@@ -35,7 +36,16 @@ function FolderDetailPage() {
   return (
     <div className="container page-shell folder-detail-page">
       <header className="page-hero folder-hero">
-        <p className="page-kicker">Folder</p>
+        <Breadcrumbs
+          items={[
+            { label: "Library", to: "/library" },
+            folder?.owner && {
+              label: folderOwner,
+              to: `/profile/${folder.owner._id}`,
+            },
+            { label: folderName },
+          ].filter(Boolean)}
+        />
         <h1 className="section-title">{folderName}</h1>
         <p className="muted folder-meta">
           {resourceCount} {resourceCount === 1 ? "resource" : "resources"} · {folderOwner}

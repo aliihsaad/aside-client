@@ -9,6 +9,7 @@ import VisibilityToggle from "../components/VisibilityToggle";
 import LinkList from "../components/LinkList";
 import ForkButton from "../components/ForkButton";
 import SaveButton from "../components/SaveButton";
+import Breadcrumbs from "../components/Breadcrumbs";
 import "./ResourceDetailPage.css";
 
 function ResourceDetailPage() {
@@ -41,7 +42,17 @@ function ResourceDetailPage() {
   return (
     <div className="container page-shell resource-page">
       <header className="page-hero">
-        <p className="page-kicker">Resource detail</p>
+        <Breadcrumbs
+          items={[
+            { label: "Library", to: "/library" },
+            { label: resource.owner.name, to: `/profile/${resource.owner._id}` },
+            resource.folder && {
+              label: resource.folder.name,
+              to: `/folders/${resource.folder._id}`,
+            },
+            { label: resource.title },
+          ].filter(Boolean)}
+        />
         <span className="tag">{resource.category}</span>
         <h1 className="resource-heading section-title">{resource.title}</h1>
         {resource.description && <p className="muted">{resource.description}</p>}
