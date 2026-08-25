@@ -23,7 +23,7 @@ function SavedPage() {
       <ul className="saved-list">
         {bookmarks.map(({ _id, resource }) => (
           <li key={_id}>
-            <Link to={`/resources/${resource._id}`} className="saved-row card">
+            <Link to={`/resources/${resource._id}`} className="saved-row">
               <span className="tag">{resource.category}</span>
               <span className="saved-title">{resource.title}</span>
               <span className="muted saved-owner">{resource.owner?.name}</span>
