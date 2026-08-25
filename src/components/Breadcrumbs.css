@@ -1,3 +1,9 @@
+/* Headings below run tight line-heights, so their ascenders overflow
+   upward — this keeps the trail clear of them. */
+.breadcrumbs {
+  margin-bottom: var(--sp-2);
+}
+
 /* Sits where .page-kicker would, so nested pages don't carry both. */
 .breadcrumbs ol {
   list-style: none;
