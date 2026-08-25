@@ -46,6 +46,7 @@ function PostDetailPage() {
         content: draft,
         tags: post.tags,
         imageUrl,
+        linkedResource: post.linkedResource?._id ?? null,
       });
       setData(data);
       setEditing(false);
